@@ -103,13 +103,26 @@
 
     /* Hero Section */
     .hero {
-      padding: 56px 0 36px;
+      padding: 56px 0 40px;
       background: linear-gradient(180deg, var(--surface) 0%, var(--bg-light) 100%);
       border-bottom: 1px solid var(--border);
     }
 
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .hero-title {
-      font-size: 2.4rem;
+      font-size: 2.3rem;
       line-height: 1.25;
       font-weight: 700;
       color: var(--text-main);
@@ -121,9 +134,8 @@
     }
 
     .hero-subtitle {
-      font-size: 1.12rem;
+      font-size: 1.08rem;
       color: var(--text-muted);
-      max-width: 760px;
       margin-bottom: 24px;
     }
 
@@ -164,13 +176,44 @@
       background: var(--surface-accent);
     }
 
+    /* Portrait Bild Hero */
+    .hero-image-wrapper {
+      position: relative;
+    }
+
+    .hero-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--surface-accent);
+      border-radius: var(--radius);
+      z-index: 1;
+    }
+
+    .portrait-photo {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      box-shadow: 0 10px 25px rgba(65, 83, 137, 0.12);
+      display: block;
+      background-color: var(--surface);
+    }
+
     /* INFOKASTEN: PRAKTIKUMS-ECKDATEN */
     .search-box {
-      margin-top: 36px;
+      margin-top: 32px;
       background: var(--surface);
       border: 2px solid var(--primary);
       border-radius: var(--radius);
-      padding: 24px 28px;
+      padding: 20px 24px;
       box-shadow: 0 4px 12px rgba(65, 83, 137, 0.06);
     }
 
@@ -180,13 +223,13 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       border-bottom: 1px solid var(--surface-accent);
       padding-bottom: 10px;
     }
 
     .search-box-title {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--primary);
       display: flex;
@@ -195,7 +238,7 @@
     }
 
     .search-box-status {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       background: var(--primary);
       color: #ffffff;
@@ -207,18 +250,18 @@
 
     .search-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
     }
 
     .search-item {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
     .search-item strong {
       display: block;
       color: var(--text-muted);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 3px;
@@ -323,6 +366,56 @@
       border-radius: 4px;
     }
 
+    /* Werdegang Banner & Layout */
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 860px) {
+      .profile-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .profile-banner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--primary);
+      padding: 28px;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .profile-banner h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .profile-banner p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .presentation-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      max-height: 280px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    }
+
     /* Stack & Skills */
     .stack-grid {
       display: grid;
@@ -363,27 +456,6 @@
       font-size: 0.6rem;
     }
 
-    /* Background & Experience */
-    .profile-banner {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 6px solid var(--primary);
-      padding: 28px;
-      border-radius: var(--radius);
-      margin-bottom: 24px;
-    }
-
-    .profile-banner h3 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-      color: var(--text-main);
-    }
-
-    .profile-banner p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
     /* Footer */
     footer {
       background: var(--surface);
@@ -421,48 +493,60 @@
 
   <main class="container">
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION MIT PORTRAIT -->
     <section class="hero">
-      <h1 class="hero-title">Software entwickeln mit <span>Macher-Mentalität</span> & Systemverständnis.</h1>
-      <p class="hero-subtitle">
-        Fachinformatiker für Anwendungsentwicklung in Ausbildung mit über 20 Jahren praktischer Erfahrung aus der Logistik. 
-        Kombination aus robuster Problemlösung, Hardwarenähe und strukturierter Software-Entwicklung – vor Ort im Raum Köln, Bonn und Kreis Euskirchen.
-      </p>
-      <div class="btn-group">
-        <a href="#projekte" class="btn btn-primary">Projekte ansehen</a>
-        <a href="mailto:david.bauchmueller@gmail.com" class="btn btn-secondary">Kontakt aufnehmen</a>
-      </div>
+      <div class="hero-layout">
+        
+        <!-- Text & Eckdaten links -->
+        <div>
+          <h1 class="hero-title">Software entwickeln mit <span>Macher-Mentalität</span> & Systemverständnis.</h1>
+          <p class="hero-subtitle">
+            Fachinformatiker für Anwendungsentwicklung in Ausbildung mit über 20 Jahren praktischer Erfahrung aus der Logistik. 
+            Kombination aus robuster Problemlösung, Hardwarenähe und strukturierter Software-Entwicklung – vor Ort im Raum Köln, Bonn und Kreis Euskirchen.
+          </p>
+          <div class="btn-group">
+            <a href="#projekte" class="btn btn-primary">Projekte ansehen</a>
+            <a href="mailto:david.bauchmueller@gmail.com" class="btn btn-secondary">Kontakt aufnehmen</a>
+          </div>
 
-      <!-- INFOKASTEN: PRAKTIKUMS-ECKDATEN -->
-      <div class="search-box">
-        <div class="search-box-header">
-          <div class="search-box-title">
-            📌 Praktikums-Eckdaten
+          <!-- INFOKASTEN: PRAKTIKUMS-ECKDATEN -->
+          <div class="search-box">
+            <div class="search-box-header">
+              <div class="search-box-title">
+                📌 Praktikums-Eckdaten
+              </div>
+              <span class="search-box-status">Praktikumsphase 2027</span>
+            </div>
+            <div class="search-grid">
+              <div class="search-item">
+                <strong>Zeitraum</strong>
+                <span>01.03.2027 – 01.10.2027</span>
+              </div>
+              <div class="search-item">
+                <strong>Dauer</strong>
+                <span>6 Monate (Vollzeit)</span>
+              </div>
+              <div class="search-item">
+                <strong>Einsatzmodell</strong>
+                <span>Präsenz vor Ort</span>
+              </div>
+              <div class="search-item">
+                <strong>Einsatzbereich</strong>
+                <span>Köln / Bonn / Kreis Euskirchen</span>
+              </div>
+              <div class="search-item">
+                <strong>Rahmen</strong>
+                <span>Pflichtpraktikum (FIAE)</span>
+              </div>
+            </div>
           </div>
-          <span class="search-box-status">Praktikumsphase 2027</span>
         </div>
-        <div class="search-grid">
-          <div class="search-item">
-            <strong>Zeitraum</strong>
-            <span>01.03.2027 – 01.10.2027</span>
-          </div>
-          <div class="search-item">
-            <strong>Dauer</strong>
-            <span>6 Monate (Vollzeit)</span>
-          </div>
-          <div class="search-item">
-            <strong>Einsatzmodell</strong>
-            <span>Präsenz vor Ort</span>
-          </div>
-          <div class="search-item">
-            <strong>Einsatzbereich</strong>
-            <span>Köln / Bonn / Kreis Euskirchen</span>
-          </div>
-          <div class="search-item">
-            <strong>Rahmen</strong>
-            <span>Pflichtpraktikum (FIAE-Umschulung)</span>
-          </div>
+
+        <!-- Porträtbild Hero rechts -->
+        <div class="hero-image-wrapper">
+          <img src="portrait.png" alt="David Bauchmüller Portrait" class="portrait-photo">
         </div>
+
       </div>
     </section>
 
@@ -536,18 +620,23 @@
       </div>
     </section>
 
-    <!-- PROFIL / WERDEGANG -->
+    <!-- PROFIL / WERDEGANG MIT PRÄSENTATIONSBILD -->
     <section id="profil">
       <h2 class="section-title">Werdegang & Kompetenzprofil</h2>
       <p class="section-desc">Was ich mitbringe und wie ich arbeite.</p>
 
-      <div class="profile-banner">
-        <h3>Das Fundament: 20+ Jahre Praxis, Logistik & Organisation</h3>
-        <p>
-          Vor meiner Umschulung zum Fachinformatiker habe ich über zwei Jahrzehnte in der Lagerlogistik gearbeitet. 
-          Das bedeutet für Entwicklungsteams: Ich kenne reale Betriebs- und Prozessabläufe, bringe absolute Zuverlässigkeit, 
-          Belastbarkeit und Teamfähigkeit mit und weiß, dass Software am Ende des Tages in der echten Praxis stabil funktionieren muss.
-        </p>
+      <div class="profile-layout">
+        <div class="profile-banner">
+          <h3>Das Fundament: 20+ Jahre Praxis, Logistik & Organisation</h3>
+          <p>
+            Vor meiner Umschulung zum Fachinformatiker habe ich über zwei Jahrzehnte in der Lagerlogistik gearbeitet. 
+            Das bedeutet für Entwicklungsteams: Ich kenne reale Betriebs- und Prozessabläufe, bringe absolute Zuverlässigkeit, 
+            Belastbarkeit und Teamfähigkeit mit und weiß, dass Software am Ende des Tages in der echten Praxis stabil funktionieren muss.
+          </p>
+        </div>
+        <div>
+          <img src="praesentation.jpeg" alt="David Bauchmüller bei einer Präsentation" class="presentation-photo">
+        </div>
       </div>
 
       <div class="stack-grid">
