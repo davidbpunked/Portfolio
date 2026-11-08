@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kompetenzprofil & Skills | David Bauchmüller</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #415389;
+      --primary-dark: #2f3e69;
+      --primary-light: #5267a6;
+      --bg-light: #f7f7f6;
+      --surface: #ffffff;
+      --surface-accent: #d5d4ce;
+      --text-main: #111111;
+      --text-muted: #555555;
+      --border: #c8c7c0;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--surface-accent);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 70px;
+      padding: 10px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.2px;
+      transition: color 0.2s ease;
+    }
+
+    .brand:hover {
+      color: var(--primary-dark);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      border: 1.5px solid transparent;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+      border-color: var(--border);
+      background-color: rgba(65, 83, 137, 0.04);
+    }
+
+    .nav-link.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background-color: rgba(65, 83, 137, 0.06);
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: #ffffff !important;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      margin-left: 6px;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+
+    /* Page Head */
+    .page-head {
+      padding: 36px 0 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      margin-bottom: 32px;
+    }
+
+    .page-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .page-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 3px;
+      background: var(--primary);
+      margin-top: 6px;
+      border-radius: 2px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      border-left: 2px solid var(--border);
+      padding-left: 32px;
+      margin-left: 14px;
+      margin-bottom: 40px;
+      max-width: 860px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+      padding: 12px 16px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: default;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -33px;
+      top: 15px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--bg-light);
+      border: 2px solid var(--primary);
+      transform: translateX(-50%);
+      transform-origin: center center;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+      z-index: 2;
+    }
+
+    .timeline-item:hover {
+      background: var(--surface);
+      border-color: var(--border);
+      box-shadow: 0 4px 12px rgba(65, 83, 137, 0.06);
+    }
+
+    .timeline-item:hover::before {
+      transform: translateX(-50%) scale(1.35);
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(65, 83, 137, 0.2);
+    }
+
+    .timeline-role {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--surface);
+      border-top: 2px solid var(--surface-accent);
+      padding: 28px 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 540px) {
+      .nav-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-right {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav-bar">
+      <a href="index.html" class="brand" aria-label="Zur Startseite von David Bauchmüller">
+        David Bauchmüller
+      </a>
+      <nav class="nav-right" aria-label="Hauptnavigation">
+        <a href="index.html" class="nav-link">Startseite</a>
+        <a href="lebenslauf.html" class="nav-link">Lebenslauf</a>
+        <a href="skills.html" class="nav-link active" aria-current="page">Hardskills & Softskills</a>
+        <a href="impressum.html" class="nav-link">Impressum</a>
+        <a href="mailto:david.bauchmueller@gmail.com" class="nav-link nav-cta">✉ E-Mail senden</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SEITENKOPF -->
+  <div class="page-head">
+    <div class="container">
+      <h1 class="page-title">Qualifikations- & Kompetenzprofil</h1>
+      <p class="page-subtitle">Detaillierte Übersicht über technische Kenntnisse (Hardskills) und methodische Arbeitsweise (Softskills).</p>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- HARDSKILLS -->
+    <section>
+      <h2 class="section-title">Hardskills & Fachkompetenzen</h2>
+      <p class="section-desc">Schwerpunkte aus Umschulung, Systempraxis und kontinuierlicher Weiterbildung.</p>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-role">Software Engineering & Programmierung</div>
+          <div class="timeline-desc">
+            Fundierte Grundlagen und praktische Anwendung der objektorientierten Programmierung (OOP) mit Python und Java. Verständnis für saubere Software-Architekturen, Datenkapselung, Entwurfsmuster sowie die systematische Strukturierung wartbaren und lesbaren Codes.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Datenbankdesign & Datenmodelle (SQL)</div>
+          <div class="timeline-desc">
+            Konzeption und Abfrage relationaler Datenbankstrukturen mit SQL. Erstellung von Tabellenschemata, Normalisierung, Fremdschlüsselbeziehungen, performante Joins und Sicherstellung konsistenter Datenhaltungs- und Schnittstellenprozesse.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">System Engineering & Betriebssysteme</div>
+          <div class="timeline-desc">
+            Ganzheitliches technisches Verständnis im System Engineering und systemnaher Softwareentwicklung. Praktische Administration, Dienstekonfiguration und strukturierte Fehleranalyse auf Debian-/Linux- und Windows-Umgebungen.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Netzwerktechnik & Infrastruktur</div>
+          <div class="timeline-desc">
+            Sichere Beherrschung netzwerktechnischer Grundlagen: Adressierungs- und Routingkonzepte mit IPv4 und IPv6, Subnetting, Funktionsweisen zentraler Netzwerkdienste wie DNS und DHCP sowie Analyse von Datenströmen.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Hardware, Prototyping & Fertigung</div>
+          <div class="timeline-desc">
+            Praktisches Prototyping und Anbindung von Sensorik sowie Aktorik über serielle Schnittstellen mit Raspberry Pi, ESP32 und Arduino, kombiniert mit CAD-Vorbereitung, Slicing und additiver Fertigung funktionaler Bauteile im 3D-Druck.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">KI-Tools & Produktivitätssoftware</div>
+          <div class="timeline-desc">
+            Gezieltes Prompt Engineering und effiziente Nutzung generativer KI-Systeme (ChatGPT, Gemini, Copilot) zur Beschleunigung von Code-Erstellung, Refactoring und Dokumentation, ergänzt durch sicheren Umgang mit Microsoft Office (Word, Excel, PowerPoint) für betriebliche Berichte und Analysen.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SOFTSKILLS -->
+    <section>
+      <h2 class="section-title">Softskills & Arbeitsweise</h2>
+      <p class="section-desc">Geprägt durch mehr als zwei Jahrzehnte praktische Tätigkeit in operativer Logistik und Projektkoordination.</p>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-role">Analytisches Denken</div>
+          <div class="timeline-desc">Schnelles Erfassen komplexer Zusammenhänge und systematisches Zerlegen von Aufgabenstellungen in strukturierte Teilprozesse.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Problemlösungsorientierung</div>
+          <div class="timeline-desc">Pragmatischer, zielgerichteter Ansatz bei der Fehlersuche und Fehlerbehebung in Code, Infrastruktur und Prozessen.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Zuverlässigkeit</div>
+          <div class="timeline-desc">Gewissenhafte Einhaltung von Absprachen, Terminen und betrieblichen Qualitätsstandards im Arbeitsalltag.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Selbstständigkeit</div>
+          <div class="timeline-desc">Eigenverantwortliche, strukturierte Bearbeitung von Arbeitspaketen mit stetem Blick auf das produktive Gesamtergebnis.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Verantwortungsbewusstsein</div>
+          <div class="timeline-desc">Sorgfältiger und risikobewusster Umgang mit Systemen, vertraulichen Daten und betrieblichen Ressourcen.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Teamfähigkeit</div>
+          <div class="timeline-desc">Offene, verbindliche und konstruktive Kommunikation auf Augenhöhe innerhalb des Entwicklungsteams.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Sorgfalt & Genauigkeit</div>
+          <div class="timeline-desc">Präzises Arbeiten bei der Code-Erstellung, Systemkonfiguration und Dokumentation betrieblicher Abläufe.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-role">Eigeninitiative & Lernbereitschaft</div>
+          <div class="timeline-desc">Hohe intrinsische Motivation, sich kontinuierlich in neue Programmiersprachen, Frameworks und Entwicklungswerkzeuge einzuarbeiten.</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <strong>David Bauchmüller</strong> – 53894 Mechernich
+      </div>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum & Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

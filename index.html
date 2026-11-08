@@ -3,18 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>David Bauchmüller | Fachinformatiker Anwendungsentwicklung</title>
+  <title>David Bauchmüller | Angehender Fachinformatiker Anwendungsentwicklung</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* =========================================================
-       FARBEN & VARIABLEN
-       #415389: Primary Slate-Blue
-       #d5d4ce: Warm Grey / Accent Background
-       #ffffff: Pure White
-       #111111: Clean Black
-       ========================================================= */
     :root {
       --primary: #415389;
       --primary-dark: #2f3e69;
@@ -35,17 +28,24 @@
       padding: 0;
     }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+
     body {
       font-family: var(--font-body);
       background-color: var(--bg-light);
       color: var(--text-main);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 20px;
     }
 
     /* Header & Navigation */
@@ -61,32 +61,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 70px;
+      min-height: 70px;
+      padding: 10px 0;
+      gap: 16px;
     }
 
     .brand {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--primary);
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      letter-spacing: -0.2px;
+      transition: color 0.2s ease;
     }
 
-    .brand-sub {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      border-left: 2px solid var(--surface-accent);
-      padding-left: 10px;
-      margin-left: 6px;
+    .brand:hover {
+      color: var(--primary-dark);
     }
 
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .nav-link {
@@ -94,35 +91,71 @@
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 600;
-      transition: color 0.2s ease;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      border: 1.5px solid transparent;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .nav-link:hover {
       color: var(--primary);
+      border-color: var(--border);
+      background-color: rgba(65, 83, 137, 0.04);
+    }
+
+    .nav-link.active {
+      color: var(--primary);
+      border-color: var(--primary);
+      background-color: rgba(65, 83, 137, 0.06);
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: #ffffff !important;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      margin-left: 6px;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
     }
 
     /* Hero Section */
     .hero {
-      padding: 56px 0 40px;
+      padding: 44px 0 36px;
       background: linear-gradient(180deg, var(--surface) 0%, var(--bg-light) 100%);
       border-bottom: 1px solid var(--border);
     }
 
     .hero-layout {
       display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 40px;
-      align-items: start;
+      grid-template-columns: 1fr 300px;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 32px;
     }
 
-    @media (max-width: 860px) {
-      .hero-layout {
-        grid-template-columns: 1fr;
-      }
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: #e9ecf4;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      letter-spacing: 0.3px;
     }
 
     .hero-title {
-      font-size: 2.3rem;
+      font-size: 2.1rem;
       line-height: 1.25;
       font-weight: 700;
       color: var(--text-main);
@@ -134,7 +167,7 @@
     }
 
     .hero-subtitle {
-      font-size: 1.08rem;
+      font-size: 1.02rem;
       color: var(--text-muted);
       margin-bottom: 24px;
     }
@@ -147,9 +180,9 @@
 
     .btn {
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
-      padding: 10px 20px;
+      padding: 10px 18px;
       border-radius: var(--radius);
       display: inline-flex;
       align-items: center;
@@ -167,7 +200,7 @@
     }
 
     .btn-secondary {
-      background: #ffffff;
+      background: var(--surface);
       color: var(--text-main);
       border: 1px solid var(--border);
     }
@@ -176,7 +209,6 @@
       background: var(--surface-accent);
     }
 
-    /* Portrait Bild Hero */
     .hero-image-wrapper {
       position: relative;
     }
@@ -184,8 +216,8 @@
     .hero-image-wrapper::before {
       content: '';
       position: absolute;
-      top: -10px;
-      right: -10px;
+      top: -8px;
+      right: -8px;
       width: 100%;
       height: 100%;
       border: 2px solid var(--surface-accent);
@@ -197,23 +229,23 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      height: 440px;
+      height: 380px;
       object-fit: cover;
       object-position: top center;
       border-radius: var(--radius);
-      border: 2px solid var(--border);
-      box-shadow: 0 10px 25px rgba(65, 83, 137, 0.12);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 20px rgba(65, 83, 137, 0.08);
       display: block;
       background-color: var(--surface);
     }
 
-    /* INFOKASTEN: PRAKTIKUMS-ECKDATEN */
+    /* Praktikums-Kasten über die volle Breite */
     .search-box {
-      margin-top: 32px;
+      width: 100%;
       background: var(--surface);
       border: 2px solid var(--primary);
       border-radius: var(--radius);
-      padding: 20px 24px;
+      padding: 24px 28px;
       box-shadow: 0 4px 12px rgba(65, 83, 137, 0.06);
     }
 
@@ -222,27 +254,24 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin-bottom: 16px;
       border-bottom: 1px solid var(--surface-accent);
-      padding-bottom: 10px;
+      padding-bottom: 12px;
     }
 
     .search-box-title {
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .search-box-status {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
       background: var(--primary);
       color: #ffffff;
-      padding: 3px 10px;
+      padding: 4px 12px;
       border-radius: 4px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -250,8 +279,8 @@
 
     .search-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px 24px;
     }
 
     .search-item {
@@ -270,199 +299,52 @@
     .search-item span {
       color: var(--text-main);
       font-weight: 600;
-    }
-
-    /* Section Allgemein */
-    section {
-      padding: 52px 0;
-    }
-
-    .section-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 6px;
-      position: relative;
+      line-height: 1.4;
       display: inline-block;
     }
 
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 44px;
-      height: 3px;
-      background: var(--primary);
-      margin-top: 6px;
-      border-radius: 2px;
+    /* Profil-Bereich */
+    .pitch-section {
+      padding: 40px 0 20px;
     }
 
-    .section-desc {
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      font-size: 0.98rem;
-    }
-
-    /* Projects Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
+    .pitch-card {
       background: var(--surface);
       border: 1px solid var(--border);
+      border-left: 5px solid var(--primary);
+      padding: 28px 30px;
       border-radius: var(--radius);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      line-height: 1.7;
     }
 
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 16px rgba(65, 83, 137, 0.08);
-      border-color: var(--primary);
-    }
-
-    .card-category {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
-    }
-
-    .card-title {
+    .pitch-card h2 {
       font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 10px;
       color: var(--text-main);
+      margin-bottom: 14px;
     }
 
-    .card-text {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .tag {
-      background: var(--surface-accent);
-      color: var(--text-main);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    /* Werdegang Banner & Layout */
-    .profile-layout {
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 24px;
-      align-items: stretch;
-      margin-bottom: 24px;
-    }
-
-    @media (max-width: 860px) {
-      .profile-layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .profile-banner {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 6px solid var(--primary);
-      padding: 28px;
-      border-radius: var(--radius);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .profile-banner h3 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-      color: var(--text-main);
-    }
-
-    .profile-banner p {
+    .pitch-card p {
       color: var(--text-muted);
       font-size: 0.95rem;
+      margin-bottom: 14px;
     }
 
-    .presentation-photo {
-      width: 100%;
-      height: 100%;
-      min-height: 220px;
-      max-height: 280px;
-      object-fit: cover;
-      object-position: top center;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      display: block;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    .pitch-card p:last-child {
+      margin-bottom: 0;
     }
 
-    /* Stack & Skills */
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-
-    .stack-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 18px;
-      border-radius: var(--radius);
-    }
-
-    .stack-box h4 {
-      font-size: 0.95rem;
-      color: var(--primary);
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .stack-box ul {
-      list-style: none;
-      font-size: 0.9rem;
+    .pitch-card strong {
       color: var(--text-main);
-    }
-
-    .stack-box li {
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .stack-box li::before {
-      content: '■';
-      color: var(--primary);
-      font-size: 0.6rem;
     }
 
     /* Footer */
     footer {
       background: var(--surface);
       border-top: 2px solid var(--surface-accent);
-      padding: 36px 0;
-      font-size: 0.88rem;
+      padding: 28px 0;
+      font-size: 0.85rem;
       color: var(--text-muted);
+      margin-top: 40px;
     }
 
     .footer-content {
@@ -470,7 +352,71 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
       gap: 16px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 860px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .hero-image-wrapper {
+        max-width: 340px;
+        margin: 0 auto;
+      }
+
+      .portrait-photo {
+        height: 340px;
+      }
+
+      .hero-title {
+        font-size: 1.85rem;
+      }
+
+      .search-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 580px) {
+      .nav-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-right {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .hero-title {
+        font-size: 1.55rem;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .search-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -479,203 +425,106 @@
   <!-- HEADER -->
   <header>
     <div class="container nav-bar">
-      <a href="#" class="brand">
+      <a href="index.html" class="brand" aria-label="Zur Startseite von David Bauchmüller">
         David Bauchmüller
-        <span class="brand-sub">Fachinformatiker Anwendungsentwicklung</span>
       </a>
-      <div class="nav-right">
-        <a href="#projekte" class="nav-link">Projekte</a>
-        <a href="#profil" class="nav-link">Werdegang</a>
-        <a href="mailto:david.bauchmueller@gmail.com" class="nav-link">Kontakt</a>
-      </div>
+      <nav class="nav-right" aria-label="Hauptnavigation">
+        <a href="index.html" class="nav-link active" aria-current="page">Startseite</a>
+        <a href="lebenslauf.html" class="nav-link">Lebenslauf</a>
+        <a href="skills.html" class="nav-link">Hardskills & Softskills</a>
+        <a href="impressum.html" class="nav-link">Impressum</a>
+        <a href="mailto:david.bauchmueller@gmail.com" class="nav-link nav-cta">✉ E-Mail senden</a>
+      </nav>
     </div>
   </header>
 
   <main class="container">
 
-    <!-- HERO SECTION MIT PORTRAIT -->
+    <!-- HERO SECTION -->
     <section class="hero">
+      
       <div class="hero-layout">
-        
-        <!-- Text & Eckdaten links -->
         <div>
-          <h1 class="hero-title">Software entwickeln mit <span>Macher-Mentalität</span> & Systemverständnis.</h1>
+          <span class="hero-badge">Umschulung BFW Köln (2025 – 2028)</span>
+          <h1 class="hero-title">Begeisterung für Code trifft auf <span>fundierte Berufserfahrung</span>.</h1>
           <p class="hero-subtitle">
-            Fachinformatiker für Anwendungsentwicklung in Ausbildung mit über 20 Jahren praktischer Erfahrung aus der Logistik. 
-            Kombination aus robuster Problemlösung, Hardwarenähe und strukturierter Software-Entwicklung – vor Ort im Raum Köln, Bonn und Kreis Euskirchen.
+            Als angehender Fachinformatiker für Anwendungsentwicklung suche ich ab März 2027 
+            ein Praktikumsteam im Raum Köln, Bonn oder Kreis Euskirchen, in dem ich tatkräftig 
+            mit anpacken und mich fachlich weiterentwickeln kann. Im Gepäck habe ich ein solides 
+            Fundament im Software- und System Engineering sowie über 20 Jahre Praxis in Prozessorganisation 
+            und Teamarbeit – verlässlich, wissbegierig und lösungsorientiert.
           </p>
           <div class="btn-group">
-            <a href="#projekte" class="btn btn-primary">Projekte ansehen</a>
-            <a href="mailto:david.bauchmueller@gmail.com" class="btn btn-secondary">Kontakt aufnehmen</a>
-          </div>
-
-          <!-- INFOKASTEN: PRAKTIKUMS-ECKDATEN -->
-          <div class="search-box">
-            <div class="search-box-header">
-              <div class="search-box-title">
-                📌 Praktikums-Eckdaten
-              </div>
-              <span class="search-box-status">Praktikumsphase 2027</span>
-            </div>
-            <div class="search-grid">
-              <div class="search-item">
-                <strong>Zeitraum</strong>
-                <span>01.03.2027 – 01.10.2027</span>
-              </div>
-              <div class="search-item">
-                <strong>Dauer</strong>
-                <span>6 Monate (Vollzeit)</span>
-              </div>
-              <div class="search-item">
-                <strong>Einsatzmodell</strong>
-                <span>Präsenz vor Ort</span>
-              </div>
-              <div class="search-item">
-                <strong>Einsatzbereich</strong>
-                <span>Köln / Bonn / Kreis Euskirchen</span>
-              </div>
-              <div class="search-item">
-                <strong>Rahmen</strong>
-                <span>Pflichtpraktikum (FIAE)</span>
-              </div>
-            </div>
+            <a href="lebenslauf.html" class="btn btn-primary">Lebenslauf ansehen</a>
+            <a href="skills.html" class="btn btn-secondary">Kompetenzprofil öffnen</a>
           </div>
         </div>
 
-        <!-- Porträtbild Hero rechts -->
         <div class="hero-image-wrapper">
           <img src="portrait.png" alt="David Bauchmüller Portrait" class="portrait-photo">
         </div>
-
       </div>
+
+      <!-- PRAKTIKUMS-ECKDATEN -->
+      <div class="search-box">
+        <div class="search-box-header">
+          <div class="search-box-title">Eckdaten zur betrieblichen Praxisphase</div>
+          <span class="search-box-status">Praktikumsplatz 2027</span>
+        </div>
+        <div class="search-grid">
+          <div class="search-item">
+            <strong>Zeitraum</strong>
+            <span>01.03.2027 – 01.10.2027</span>
+          </div>
+          <div class="search-item">
+            <strong>Dauer & Umfang</strong>
+            <span>6 Monate Vollzeit (40 Std./Woche)</span>
+          </div>
+          <div class="search-item">
+            <strong>Verfügbarkeit</strong>
+            <span>Durchgehend im Betrieb (keine BFW-Tage)</span>
+          </div>
+          <div class="search-item">
+            <strong>Kosten für den Betrieb</strong>
+            <span>Keine (Versicherung & Kosten über Träger)</span>
+          </div>
+          <div class="search-item">
+            <strong>IHK-Abschlussprojekt</strong>
+            <span>80 Std. praxisnah / betriebsrelevant</span>
+          </div>
+          <div class="search-item">
+            <strong>Region & Einsatz</strong>
+            <span>Köln / Bonn / Euskirchen (Präsenz)</span>
+          </div>
+        </div>
+      </div>
+
     </section>
 
-    <!-- PROJEKTE -->
-    <section id="projekte">
-      <h2 class="section-title">Ausgewählte Projekte</h2>
-      <p class="section-desc">Praktische Implementierungen aus Softwareentwicklung, Hardware-Anbindung und Schnittstellen.</p>
-
-      <div class="grid">
-
-        <!-- Projekt 1: Python Desktop & GUI -->
-        <article class="card">
-          <div>
-            <div class="card-category">Software-Architektur & GUI</div>
-            <h3 class="card-title">Interaktive Desktop- & GUI-Anwendungen</h3>
-            <p class="card-text">
-              Entwicklung modularer Python-Anwendungen mit Fokus auf Event-Loops, State-Management, 
-              saubere Klassenstrukturen (OOP) und reaktive Benutzeroberflächen.
-            </p>
-          </div>
-          <div>
-            <div class="tag-list">
-              <span class="tag">Python</span>
-              <span class="tag">OOP-Architektur</span>
-              <span class="tag">Event-Handling</span>
-              <span class="tag">State-Management</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Projekt 2: Hardware & Aktorik-Steuerung -->
-        <article class="card">
-          <div>
-            <div class="card-category">Hardware-Schnittstellen & Embedded</div>
-            <h3 class="card-title">Sensorik- & Multi-Aktorik-Steuerung</h3>
-            <p class="card-text">
-              Signalverarbeitung und präzise Servo-Ansteuerung über serielle Protokolle. 
-              Schnittstellenkommunikation zwischen Python-Host und Microcontroller-Plattformen.
-            </p>
-          </div>
-          <div>
-            <div class="tag-list">
-              <span class="tag">Python</span>
-              <span class="tag">Microcontroller</span>
-              <span class="tag">Aktorik (Servos)</span>
-              <span class="tag">Serielle Schnittstelle</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Projekt 3: Fullstack & System -->
-        <article class="card">
-          <div>
-            <div class="card-category">Backend & Automation</div>
-            <h3 class="card-title">FastAPI Service- & Web-Dashboard</h3>
-            <p class="card-text">
-              Entwicklung eines modularen Web-Dashboards zur Abfrage von System-Metriken und externen REST-APIs. 
-              Containerisiertes Deployment via Docker und Nginx-Reverse-Proxy auf eigener Infrastruktur.
-            </p>
-          </div>
-          <div>
-            <div class="tag-list">
-              <span class="tag">Python</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">Docker</span>
-              <span class="tag">Linux / Nginx</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- PROFIL / WERDEGANG MIT PRÄSENTATIONSBILD -->
-    <section id="profil">
-      <h2 class="section-title">Werdegang & Kompetenzprofil</h2>
-      <p class="section-desc">Was ich mitbringe und wie ich arbeite.</p>
-
-      <div class="profile-layout">
-        <div class="profile-banner">
-          <h3>Das Fundament: 20+ Jahre Praxis, Logistik & Organisation</h3>
-          <p>
-            Vor meiner Umschulung zum Fachinformatiker habe ich über zwei Jahrzehnte in der Lagerlogistik gearbeitet. 
-            Das bedeutet für Entwicklungsteams: Ich kenne reale Betriebs- und Prozessabläufe, bringe absolute Zuverlässigkeit, 
-            Belastbarkeit und Teamfähigkeit mit und weiß, dass Software am Ende des Tages in der echten Praxis stabil funktionieren muss.
-          </p>
-        </div>
-        <div>
-          <img src="praesentation.jpeg" alt="David Bauchmüller bei einer Präsentation" class="presentation-photo">
-        </div>
-      </div>
-
-      <div class="stack-grid">
-        <div class="stack-box">
-          <h4>Programmiersprachen</h4>
-          <ul>
-            <li>Python (Schwerpunkt)</li>
-            <li>JavaScript</li>
-            <li>HTML5 & CSS3</li>
-            <li>SQL</li>
-          </ul>
-        </div>
-        <div class="stack-box">
-          <h4>Frameworks & Tools</h4>
-          <ul>
-            <li>FastAPI & REST-APIs</li>
-            <li>Git & GitHub</li>
-            <li>SQLite / SQL-Datenbanken</li>
-            <li>JSON / REST-Schnittstellen</li>
-          </ul>
-        </div>
-        <div class="stack-box">
-          <h4>Systeme & Deployment</h4>
-          <ul>
-            <li>Linux (Debian / Ubuntu / Mint)</li>
-            <li>Docker & Nginx Reverse Proxy</li>
-            <li>Proxmox VE & Virtualisierung</li>
-            <li>Cloudflare Tunnels</li>
-          </ul>
-        </div>
-        <div class="stack-box">
-          <h4>Hardware & Embedded</h4>
-          <ul>
-            <li>Raspberry Pi</li>
-            <li>Arduino & ESP32</li>
-            <li>Sensorik & Aktorik (I2C/SPI)</li>
-            <li>Praktischer Prototypenbau</li>
-          </ul>
-        </div>
+    <!-- PROFIL AUS DEM ANSCHREIBEN -->
+    <section class="pitch-section">
+      <div class="pitch-card">
+        <h2>Profil & beruflicher Antrieb</h2>
+        <p>
+          Für die sechsmonatige Praxisphase meiner zweijährigen Umschulung zum Fachinformatiker für Anwendungsentwicklung 
+          am Berufsförderungswerk Köln suche ich ab dem <strong>01. März 2027</strong> ein Unternehmen im Raum Köln, Bonn 
+          oder Kreis Euskirchen, in dem ich von Beginn an verlässlich und engagiert an realen Softwareprojekten mitwirken kann.
+        </p>
+        <p>
+          In meiner Qualifizierung liegt der methodische Schwerpunkt auf fundiertem <strong>Software- und System Engineering</strong>: 
+          von der sauberen objektorientierten Programmierung mit <strong>Python</strong> und <strong>Java</strong> über relationale 
+          Datenbankmodelle und komplexe Abfragen via <strong>SQL</strong> bis hin zum Verständnis moderner System- und Netzwerkarchitekturen. 
+          Ich verfüge über ein solides algorithmisches Grundverständnis und arbeite mich dank ausgeprägter Eigeninitiative zügig 
+          in neue Frameworks, Schnittstellentechnologien und Systemumgebungen (Linux & Windows) ein. Mein praktisches Know-how vertiefe ich 
+          kontinuierlich durch eigene Implementierungen – von Automatisierungsskripten über serviceorientierte Backend-Tools bis 
+          hin zu containerisierten Diensten.
+        </p>
+        <p>
+          Reale betriebliche Abläufe, logistische Schnittstellen und komplexe Prozessketten sind mir durch meine mehr als 20-jährige 
+          Berufspraxis bestens vertraut. Dieses Fundament hilft mir dabei, fachliche Anforderungen strukturiert zu erfassen, 
+          analytisch zu durchdringen und in wartbare, saubere Software zu übersetzen. Verantwortungsbewusstsein, Zuverlässigkeit 
+          und eine selbstständige Arbeitsweise sind dabei für mich das Fundament jeder Zusammenarbeit.
+        </p>
       </div>
     </section>
 
@@ -685,10 +534,10 @@
   <footer>
     <div class="container footer-content">
       <div>
-        <strong>David Bauchmüller</strong>
+        <strong>David Bauchmüller</strong> – 53894 Mechernich
       </div>
-      <div>
-        <a href="mailto:david.bauchmueller@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: 600;">david.bauchmueller@gmail.com</a>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum & Datenschutz</a>
       </div>
     </div>
   </footer>
